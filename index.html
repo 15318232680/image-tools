@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线工具箱</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>在线工具箱</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <h3>图片工具</h3>
+                    <ul>
+                        <li class="active"><a href="#/image-compress">图片压缩</a></li>
+                        <li><a href="#/image-convert">图片格式转换</a></li>
+                        <li><a href="#/image-filter">图片滤镜</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h3>文本工具</h3>
+                    <ul>
+                        <li><a href="#/text-diff">文本对比</a></li>
+                        <li><a href="#/json-format">JSON格式化</a></li>
+                    </ul>
+                </div>
+                <div class="nav-group">
+                    <h3>编码转换</h3>
+                    <ul>
+                        <li><a href="#/base64">Base64转换</a></li>
+                        <li><a href="#/url-encode">URL编码</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部栏 -->
+            <header class="top-bar">
+                <div class="tool-title">图片压缩</div>
+                <div class="tool-actions">
+                    <button class="theme-toggle">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- 工具内容区 -->
+            <div class="tool-container">
+                <!-- 图片压缩工具 -->
+                <div class="tool-content" id="imageCompressTool">
+                    <div class="tool-header">
+                        <h2>图片压缩工具</h2>
+                        <p class="tool-description">
+                            支持 PNG、JPG 格式图片压缩，帮助您轻松减小图片文件大小，无损画质。
+                        </p>
+                    </div>
+
+                    <div class="compression-container">
+                        <!-- 左侧：上传和设置区域 -->
+                        <div class="compression-settings">
+                            <div class="upload-area" id="uploadArea">
+                                <input type="file" id="imageInput" accept="image/png,image/jpeg" hidden>
+                                <div class="upload-box">
+                                    <svg class="upload-icon" viewBox="0 0 24 24">
+                                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                    </svg>
+                                    <p class="upload-title">点击或拖放图片到这里</p>
+                                    <p class="upload-hint">支持 PNG、JPG 格式，最大 10MB</p>
+                                </div>
+                            </div>
+
+                            <div class="compression-options">
+                                <h3>压缩设置</h3>
+                                <div class="quality-control">
+                                    <label for="quality">压缩质量</label>
+                                    <div class="quality-slider">
+                                        <input type="range" id="quality" min="0" max="100" value="80">
+                                        <span id="qualityValue">80%</span>
+                                    </div>
+                                    <p class="quality-hint">较高的质量可以保持更好的图片效果，但文件体积较大</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右侧：预览区域 -->
+                        <div class="preview-area" id="previewArea" hidden>
+                            <div class="preview-container">
+                                <div class="preview-box">
+                                    <div class="preview-header">
+                                        <h3>原图</h3>
+                                        <div class="file-info">
+                                            <span id="originalSize">0 KB</span>
+                                        </div>
+                                    </div>
+                                    <div class="preview-image-container">
+                                        <img id="originalPreview" alt="原图预览">
+                                    </div>
+                                </div>
+                                <div class="preview-box">
+                                    <div class="preview-header">
+                                        <h3>压缩后</h3>
+                                        <div class="file-info">
+                                            <span id="compressedSize">0 KB</span>
+                                            <span class="compression-ratio" id="compressionRatio">压缩率: 0%</span>
+                                        </div>
+                                    </div>
+                                    <div class="preview-image-container">
+                                        <img id="compressedPreview" alt="压缩后预览">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-actions">
+                                <button id="downloadBtn" class="download-btn">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                    </svg>
+                                    下载压缩后的图片
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/app.js"></script>
+</body>
+</html> 
