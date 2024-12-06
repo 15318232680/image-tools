@@ -15,9 +15,7 @@ export class ImageCompress {
 
         // 上传区域点击事件
         uploadArea.addEventListener('click', () => {
-            if (!imageInput.files.length) {
-                imageInput.click();
-            }
+            imageInput.click();
         });
 
         // 拖放功能
@@ -45,6 +43,7 @@ export class ImageCompress {
             const file = e.target.files[0];
             if (file) {
                 handleImageUpload(file);
+                imageInput.value = '';
             }
         });
 
