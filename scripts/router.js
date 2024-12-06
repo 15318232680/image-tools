@@ -6,8 +6,13 @@ class Router {
         // 监听 hash 变化
         window.addEventListener('hashchange', () => this.handleRoute());
         
-        // 初始化时也要处理一次路由
-        this.handleRoute();
+        // 如果没有 hash，设置默认 hash
+        if (!window.location.hash) {
+            window.location.hash = '#/image/compress';
+        } else {
+            // 初始化时处理路由
+            this.handleRoute();
+        }
     }
 
     // 注册路由
@@ -17,8 +22,10 @@ class Router {
 
     // 处理路由
     async handleRoute() {
-        // 默认路由为图片压缩
-        const hash = window.location.hash || '#/image/compress';
+        const hash = window.location.hash;
+        // 确保有 hash 值
+        if (!hash) return;
+        
         const path = hash.slice(1); // 移除 #
         
         const module = this.routes.get(path);
