@@ -136,9 +136,46 @@ export class ImageCompress {
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
+
+        // 添加预览功能
+        const previewImages = document.querySelectorAll('.preview-image-container img');
+        previewImages.forEach(img => {
+            img.addEventListener('click', function() {
+                showPreview(this.src);
+            });
+        });
+
+        // 创建预览模态框
+        const previewModal = document.createElement('div');
+        previewModal.className = 'preview-modal';
+        previewModal.innerHTML = `
+            <div class="preview-modal-content">
+                <img src="" alt="预览图片">
+                <button class="close-preview">&times;</button>
+            </div>
+        `;
+        document.body.appendChild(previewModal);
+
+        // 关闭预览
+        previewModal.addEventListener('click', (e) => {
+            if (e.target === previewModal || e.target.className === 'close-preview') {
+                previewModal.style.display = 'none';
+            }
+        });
+
+        // 预览功能
+        function showPreview(src) {
+            const modalImg = previewModal.querySelector('img');
+            modalImg.src = src;
+            previewModal.style.display = 'flex';
+        }
     }
 
     static async unload() {
         // 清理代码
+        const previewModal = document.querySelector('.preview-modal');
+        if (previewModal) {
+            previewModal.remove();
+        }
     }
 } 
