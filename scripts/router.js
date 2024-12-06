@@ -40,4 +40,6 @@ class Router {
             }
         }
     }
-} 
+}
+
+export { Router }; 
